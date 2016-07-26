@@ -1,72 +1,10 @@
 var React = require('react');
+var TabSwitcher = require('mofo-ui').TabSwitcher;
 var HeroUnit = require('../../components/hero-unit.jsx');
 
-var GuideList = React.createClass({
-  getInitialState: function(){
-    return {
-      guides : []
-    }
-  },
-  setData : function(data){
-    this.setState({guides : data });
-  },
-  fetchJSON : function(path,callback){
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function() {
-      if(httpRequest.readyState === 4) {
-        if(httpRequest.status === 200) {
-          var data = JSON.parse(httpRequest.responseText);
-          if (typeof callback === "function") callback(data);
-        }
-      }
-    };
-    httpRequest.open('GET', path);
-    httpRequest.send();
-  },
-  componentDidMount: function() {
-    this.fetchJSON("https://mozilla.github.io/learning-networks/clubs/clubs-resources.json",this.setData);
-  },
-  getLinks : function(){
-    var categories = this.state.guides.map(function(category){
-      var guideLinks = category.guides.map(function(guide){
-
-        if(guide.translations && guide.translations.length > 0){
-          var translationLinks = guide.translations.map(function(translation){
-            return (
-              <li>
-                <a href={ translation.url }>{ translation.title }</a><span className="language"> - ({ translation.language })</span>
-              </li>
-            );
-          });
-        }
-
-        return (
-          <li>
-            <a href={guide.url}>{ guide.title }</a>
-            { translationLinks ? <ul className="translations">{ translationLinks }</ul> : "" }
-          </li>
-        );
-      });
-
-      return (
-        <section className="resourceCategory">
-          <h3> { category.category } </h3>
-          <ul>
-            { guideLinks }
-          </ul>
-        </section>
-      );
-    });
-    return categories;
-  },
-  render: function(){
-    return(
-      <div className="guideList">
-        { this.getLinks() }
-      </div>
-    )
-  }
-});
+var About = require('./About.jsx');
+var Running = require('./Running.jsx');
+var Start = require('./Start.jsx');
 
 var ClubsGuides = React.createClass({
   statics: {
@@ -81,8 +19,11 @@ var ClubsGuides = React.createClass({
           <h2>Local groups teaching the Web around the world</h2>
         </HeroUnit>
         <div className="inner-container">
-          <h2>Clubs Guides &amp; Resources</h2>
-          <GuideList></GuideList>
+          <TabSwitcher initialTab={`about`}>
+            <div slug="about" name="About Mozilla Clubs" iconDefault="#TODO" iconActive="#TODO"><About></About></div>
+            <div slug="start" name="Start a Club" iconDefault="#TODO" iconActive="#TODO"><Start></Start></div>
+            <div slug="running" name="Running Your Club" iconDefault="#TODO" iconActive="#TODO"><Running></Running></div>
+          </TabSwitcher>
         </div>
       </div>
     );
