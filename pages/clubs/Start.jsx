@@ -10,19 +10,19 @@ var Start = React.createClass({
   render: function () {
 
     var carouselData = [{
-      image: `/img/pages/clubs/club-captains/isisipho.png`,
+      image: '/img/pages/clubs/club-captains/isisipho.png',
       caption: this.context.intl.formatMessage({id: 'captain_quote_isisipho_message'}),
       attribution: this.context.intl.formatMessage({id: 'captain_quote_isisipho_attribution'})
     }, {
-      image: `/img/pages/clubs/club-captains/patience.png`,
+      image: '/img/pages/clubs/club-captains/patience.png',
       caption: this.context.intl.formatMessage({id: 'captain_quote_patience_message'}),
       attribution: this.context.intl.formatMessage({id: 'captain_quote_patience_attribution'})
     }, {
-      image: `/img/pages/clubs/club-captains/arkodyuti.png`,
+      image: '/img/pages/clubs/club-captains/arkodyuti.png',
       caption: this.context.intl.formatMessage({id: 'captain_quote_arkodyuti_message'}),
       attribution: this.context.intl.formatMessage({id: 'captain_quote_arkodyuti_attribution'})
     }, {
-      image: `/img/pages/clubs/club-captains/mark.png`,
+      image: '/img/pages/clubs/club-captains/mark.png',
       caption: this.context.intl.formatMessage({id: 'captain_quote_mark_message'}),
       attribution: this.context.intl.formatMessage({id: 'captain_quote_mark_attribution'})
     }];
